@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock title %}
+
+{% block css %}
+.bg-light {
+background-color: #bdd7f1!important;
+}
+{% endblock css %}
+
+{% block body %}
+
+{% comment %} <img src="{% static 'images/todoapp.png' %}" alt="" width="1349">
+<center><b><i>
+            <h1 style="color:green;" class="my-3">Rohan Malo</h1>
+        </i></b></center> {% endcomment %}
+
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 font-weight-normal">Whelcome to ToDo App</h1>
+        <p class="lead font-weight-normal">Make Your Life Simple<br>
+        <h3><b><i>TRY IT NOW</i></b></h3>
+        </p>
+        <a class="btn btn-outline-secondary" href="todo">YoDo App</a>
+    </div>
+    <div class="product-device box-shadow d-none d-md-block"></div>
+    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock body %}

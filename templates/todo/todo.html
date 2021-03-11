@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block title %}ToDo App{% endblock title %}
+
+{% block css %}
+.bg-light {
+background-color: #bdd7f1!important;
+}
+{% endblock css %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<center class="my-3"><b><i>
+            <h1>Whelcome to ToDo App</h1>
+        </i></b></center>
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <div class="container">
+            <form action='http://127.0.0.1:8000/todo/' method='POST'>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="sub" class="form-label">Subject</label>
+                    <input type="text" class="form-control text-center" id="sub" name="sub"
+                        aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">What's you want to do this day</div>
+                </div>
+                <div class="form-group">
+                    <label for="main">let's make things done</label>
+                    <textarea class="form-control text-center" id="main" name="main" rows="6"></textarea>
+                </div>
+                {% if sub == null and main == null %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="list-group">
+        {% for todoitems in todoitems %}
+        <div class="container my-3 ">
+
+
+            <form action="http://127.0.0.1:8000/todo/delete_todo/{{todoitems.sno}}" method="get">
+            <center><b>{{todoitems.sno}}</b></center>
+            <li class="list-group-item border border-dark"> <b>Submit</b> : {{todoitems.subject}}</li>
+            <li class="list-group-item border border-dark"> <b>Content</b> : {{todoitems.contant}}</li>
+            <button type="submit" class="btn btn-danger my-2">Delete</button>
+            </form>
+            
+
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+
+
+
+
+{% else %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong> You are Not Login, Place Login To use This App</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="container my-3">
+    <div class="jumbotron">
+        <h1 class="display-4">
+            <center>You are not Login <br> Place login to Use this app </center>
+        </h1>
+
+        <hr class="my-4">
+        <h2>
+            <center> Login nad injoy our service </center>
+        </h2>
+
+    </div>
+</div>
+
+{% endif %}
+{% endblock body %}
+
+
